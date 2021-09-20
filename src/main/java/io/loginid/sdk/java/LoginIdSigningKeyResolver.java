@@ -15,6 +15,12 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
+	public String basePath;
+
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
+	}
+
     @Override
     public Key resolveSigningKey(JwsHeader header, Claims claims) {
         String keyId = header.getKeyId();
@@ -37,6 +43,7 @@ public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
      */
     private String getPublicKey(String keyId) throws ApiException {
         CertificatesApi certificatesApi = new CertificatesApi();
+		certificatesApi.getApiClient().setBasePath(basePath);
 
         return certificatesApi.certsGetWithHttpInfo(keyId, null).getData();
     }
