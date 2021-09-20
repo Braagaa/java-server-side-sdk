@@ -108,8 +108,7 @@ public class LoginId {
     @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
     public boolean verifyToken(String token, @Nullable String username) {
 		try {
-			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
-			signingKeyResolver.setBasePath(baseUrl);
+			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver(baseUrl);
 			Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
 
 			Claims payload = claims.getBody();
@@ -282,8 +281,7 @@ public class LoginId {
     @SuppressWarnings("rawtypes")
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
 		try {
-			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
-			signingKeyResolver.setBasePath(baseUrl);
+			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver(baseUrl);
 			Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(txToken);
 
 			Claims payload = claims.getBody();
