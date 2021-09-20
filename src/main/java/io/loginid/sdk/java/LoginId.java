@@ -107,7 +107,8 @@ public class LoginId {
      */
     @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
     public boolean verifyToken(String token, @Nullable String username) {
-        SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+        LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+		signingKeyResolver.setBasePath(baseUrl);
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
 
         Claims payload = claims.getBody();
