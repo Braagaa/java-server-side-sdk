@@ -281,24 +281,29 @@ public class LoginId {
      */
     @SuppressWarnings("rawtypes")
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
-        SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
-        Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(txToken);
+		try {
+			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+			signingKeyResolver.setBasePath(baseUrl);
+			Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(txToken);
 
-        Claims payload = claims.getBody();
-        JwsHeader headers = claims.getHeader();
+			Claims payload = claims.getBody();
+			JwsHeader headers = claims.getHeader();
 
-        String toHash = txPayload
-                + payload.getOrDefault("nonce", "")
-                + payload.getOrDefault("server_nonce", "");
+			String toHash = txPayload
+					+ payload.getOrDefault("nonce", "")
+					+ payload.getOrDefault("server_nonce", "");
 
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = messageDigest.digest(toHash.getBytes(StandardCharsets.UTF_8));
-        String hash = Base64.getUrlEncoder().encodeToString(hashBytes);
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			byte[] hashBytes = messageDigest.digest(toHash.getBytes(StandardCharsets.UTF_8));
+			String hash = Base64.getUrlEncoder().encodeToString(hashBytes);
 
-        hash = hash.replaceAll("^=+", "");
-        hash = hash.replaceAll("=+$", "");
+			hash = hash.replaceAll("^=+", "");
+			hash = hash.replaceAll("=+$", "");
 
-        return payload.get("tx_hash").equals(hash);
+			return payload.get("tx_hash").equals(hash);
+		} catch (JwtException err) {
+			return false;
+		}
     }
 
     /**
