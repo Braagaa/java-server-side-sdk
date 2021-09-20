@@ -107,17 +107,21 @@ public class LoginId {
      */
     @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
     public boolean verifyToken(String token, @Nullable String username) {
-        LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
-		signingKeyResolver.setBasePath(baseUrl);
-        Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
+		try {
+			LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+			signingKeyResolver.setBasePath(baseUrl);
+			Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
 
-        Claims payload = claims.getBody();
-        JwsHeader headers = claims.getHeader();
+			Claims payload = claims.getBody();
+			JwsHeader headers = claims.getHeader();
 
-        if (username != null) {
-            return username.equalsIgnoreCase((String) payload.get("udata"));
-        }
-        return true;
+			if (username != null) {
+				return username.equalsIgnoreCase((String) payload.get("udata"));
+			}
+			return true;
+		} catch (JwtException err) {
+			return false;
+		}
     }
 
     /**
