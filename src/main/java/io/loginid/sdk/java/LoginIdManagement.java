@@ -239,6 +239,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsApi credentialsApi = new CredentialsApi();
         ApiClient apiClient = credentialsApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsResponse result = credentialsApi.credentialsGet(UUID.fromString(userId), getClientId(), null);
