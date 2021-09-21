@@ -38,6 +38,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersRetrieveBody manageUsersRetrieveBody = new ManageUsersRetrieveBody();
@@ -62,6 +63,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersDeleteBody manageUsersDeleteBody = new ManageUsersDeleteBody();
@@ -83,6 +85,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         managementApi.manageUsersUserIdDelete(getClientId(), userId);
@@ -102,6 +105,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         User result = managementApi.manageUsersUserIdActivatePut(getClientId(), userId);
@@ -121,6 +125,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         User result = managementApi.manageUsersUserIdDeactivatePut(getClientId(), userId);
@@ -264,6 +269,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsApi credentialsApi = new CredentialsApi();
         ApiClient apiClient = credentialsApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
@@ -298,6 +304,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsApi credentialsApi = new CredentialsApi();
         ApiClient apiClient = credentialsApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
@@ -329,6 +336,7 @@ public class LoginIdManagement extends LoginId {
         ManagementApi managementApi = new ManagementApi();
         ApiClient apiClient = managementApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersBody manageUsersBody = new ManageUsersBody();
@@ -354,6 +362,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsApi credentialsApi = new CredentialsApi();
         ApiClient apiClient = credentialsApi.getApiClient();
 
+		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsFido2InitForceBody credentialsFido2InitForceBody = new CredentialsFido2InitForceBody();
