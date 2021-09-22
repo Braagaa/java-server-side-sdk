@@ -24,27 +24,27 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
 public class TxInitResponse {
   @SerializedName("id")
-  private String txId = null;
+  private String id = null;
 
   @SerializedName("assertion_options")
   private InlineResponse2006AssertionOptions assertionOptions = null;
 
-  public TxInitResponse txId(String txId) {
-    this.txId = txId;
+  public TxInitResponse id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get txId
-   * @return txId
+   * Get id
+   * @return id
   **/
   @Schema(example = "5de548f0-caa2-4a5f-93f3-066ae6fc8feb", description = "")
-  public String getTxId() {
-    return txId;
+  public String getId() {
+    return id;
   }
 
-  public void setTxId(String txId) {
-    this.txId = txId;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public TxInitResponse assertionOptions(InlineResponse2006AssertionOptions assertionOptions) {
@@ -75,13 +75,13 @@ public class TxInitResponse {
       return false;
     }
     TxInitResponse txInitResponse = (TxInitResponse) o;
-    return Objects.equals(this.txId, txInitResponse.txId) &&
+    return Objects.equals(this.id, txInitResponse.id) &&
         Objects.equals(this.assertionOptions, txInitResponse.assertionOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(txId, assertionOptions);
+    return Objects.hash(id, assertionOptions);
   }
 
 
@@ -90,7 +90,7 @@ public class TxInitResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineResponse2006 {\n");
 
-    sb.append("    txId: ").append(toIndentedString(txId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    assertionOptions: ").append(toIndentedString(assertionOptions)).append("\n");
     sb.append("}");
     return sb.toString();
