@@ -53,8 +53,7 @@ import java.util.regex.Pattern;
 public class ApiClient {
 
     private String basePath = "https://directweb.usw1.loginid.io";
-	//change
-    private boolean debugging = true;
+    private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
@@ -382,8 +381,7 @@ public class ApiClient {
         if (debugging != this.debugging) {
             if (debugging) {
                 loggingInterceptor = new HttpLoggingInterceptor();
-				//change
-                loggingInterceptor.setLevel(Level.HEADERS);
+                loggingInterceptor.setLevel(Level.BODY);
                 httpClient.interceptors().add(loggingInterceptor);
             } else {
                 httpClient.interceptors().remove(loggingInterceptor);
