@@ -364,7 +364,6 @@ public class LoginIdManagement extends LoginId {
 
 		apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
-		apiClient.setDebugging(true);
 
         CredentialsFido2InitForceBody credentialsFido2InitForceBody = new CredentialsFido2InitForceBody();
         credentialsFido2InitForceBody.setClientId(getClientId());

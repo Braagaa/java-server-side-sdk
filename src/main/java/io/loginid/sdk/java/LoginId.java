@@ -327,6 +327,7 @@ public class LoginId {
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
+	apiClient.setDebugging(true);
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
         authenticateCodeWaitBody.setClientId(getClientId());
